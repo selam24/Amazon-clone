@@ -1,13 +1,13 @@
 import React from 'react'
 import LayOut from '../../Components/LayOut/LayOut'
-// import classes from "./Cart.module.css";
+// import classes from './SignUp.module.css'
 
-function Cart() {
+function SignIn() {
   return (
     <LayOut>
-      <div>Cart</div>
+        <div>SignIn</div>
     </LayOut>
-  );
+  )
 }
 
-export default Cart
+export default SignIn

@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Header.module.css'
+import { Link } from "react-router-dom";
 import amazon from "../../assets/images/amazon.png";
 import flag from "../../assets/images/flag.jpg";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -14,9 +15,9 @@ function Header() {
       <section className={classes.header_container}>
         <div className={classes.logo_container}>
           {/* logo */}
-          <a href="https://www.amazon.com/ref=nav_logo">
+          <Link to="/">
             <img src={amazon} alt="Amazon logo" />
-          </a>
+          </Link>
           {/* delivery */}
           <div className={classes.delivery}>
             <span>
@@ -41,41 +42,38 @@ function Header() {
         {/* right side link */}
         <div className={classes.order_container}>
           <div>
-            <a
+            <Link
+              to="https://www.amazon.com/customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2Famazonprime&ref_=topnav_lang"
               className={classes.language}
-              href="https://www.amazon.com/customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2Famazonprime&ref_=topnav_lang"
             >
               <img src={flag} alt="Flag" />
               <section name="" id="">
                 <option value="">EN</option>
               </section>
-            </a>
+            </Link>
           </div>
           {/* 3rd components */}
-          <a
+          <Link
+            to="https://www.amazon.com/gp/css/homepage.html?ref_=nav_youraccount_btn"
             className={classes.sign}
-            href="https://www.amazon.com/gp/css/homepage.html?ref_=nav_youraccount_btn"
           >
             <p>Sign In</p>
             <span>Account & Lists</span>
-          </a>
+          </Link>
           {/* orders */}
-          <a href="https://www.amazon.com/gp/css/order-history?ref_=nav_orders_first">
+          <Link to="/Orders">
             <p>Returns</p>
             <span>& Orders</span>
-          </a>
+          </Link>
           {/* cart */}
-          <a
-            href="https://www.amazon.com/gp/cart/view.html?ref_=nav_cart"
-            className={classes.cart}
-          >
+          <Link to="/Cart" className={classes.cart}>
             {/* icon */}
             <AddShoppingCartIcon />
             <span>0</span>
-          </a>
+          </Link>
         </div>
       </section>
-      <LowerHeader/>
+      <LowerHeader />
     </>
   );
 }
