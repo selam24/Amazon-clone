@@ -7,11 +7,14 @@ import PlaceIcon from "@mui/icons-material/Place";
 import SearchIcon from "@mui/icons-material/Search";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LowerHeader from "./LowerHeader";
+import { useContext } from "react";
+import { DataContext } from "../DataProvider/DataProvider";
 
 
 function Header() {
+  const [{basket},dispatch]=useContext(DataContext)
   return (
-    <>
+    <section className={classes.fixed}>
       <section className={classes.header_container}>
         <div className={classes.logo_container}>
           {/* logo */}
@@ -69,12 +72,12 @@ function Header() {
           <Link to="/Cart" className={classes.cart}>
             {/* icon */}
             <AddShoppingCartIcon />
-            <span>0</span>
+            <span>{basket.length}</span>
           </Link>
         </div>
       </section>
       <LowerHeader />
-    </>
+    </section>
   );
 }
 

@@ -13,7 +13,9 @@ function Result() {
   const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(`${productUrl}/products/category/${categoryName}`)
+    setisLoading(true);
+    axios
+      .get(`${productUrl}/products/category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
         setisLoading(false);
@@ -34,9 +36,14 @@ function Result() {
           <Loader />
         ) : (
           <div className={classes.products_container}>
-            {results?.map((product) => {
-              <ProductCard key={product.id} product={product} />;
-            })}
+            {results?.map((product) => (
+              <ProductCard 
+              key={product.id} 
+              product={product}
+              renderDesc={false}
+              renderAdd={true}
+               />
+            ))}
           </div>
         )}
       </section>
