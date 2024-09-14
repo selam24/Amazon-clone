@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function ProductCard({product}) 
 {
-  const {image, title, id, rating, price} = product
+  const {image, title, id, rating = { rate: 0, count: 0 }, price} = product
   return (
     <div className={`${classes.card_container}`}>
       <Link to={`/products/${id}`}>
@@ -31,3 +31,6 @@ function ProductCard({product})
 }
 
 export default ProductCard
+
+
+
