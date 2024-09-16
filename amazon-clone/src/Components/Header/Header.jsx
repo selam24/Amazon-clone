@@ -1,30 +1,37 @@
+// Importing React library and other necessary modules
 import React from "react";
-import classes from './Header.module.css'
-import { Link } from "react-router-dom";
-import amazon from "../../assets/images/amazon.png";
-import flag from "../../assets/images/flag.jpg";
-import PlaceIcon from "@mui/icons-material/Place";
-import SearchIcon from "@mui/icons-material/Search";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import LowerHeader from "./LowerHeader";
-import { useContext } from "react";
+import classes from "./Header.module.css"; 
+import { Link } from "react-router-dom"; 
+import amazon from "../../assets/images/amazon.png"; 
+import flag from "../../assets/images/flag.jpg"; 
+import PlaceIcon from "@mui/icons-material/Place"; 
+import SearchIcon from "@mui/icons-material/Search"; 
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart"; 
+import LowerHeader from "./LowerHeader"; 
+import { useContext } from "react"; //
 import { DataContext } from "../DataProvider/DataProvider";
 
-
 function Header() {
-  const [{basket},dispatch]=useContext(DataContext)
+  // Accessing context data and dispatch function
+  const [{ basket }, dispatch] = useContext(DataContext);
+
+  // Calculating total items in the basket
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
+
   return (
     <section className={classes.fixed}>
       <section className={classes.header_container}>
         <div className={classes.logo_container}>
-          {/* logo */}
+          {/* Logo section */}
           <Link to="/">
             <img src={amazon} alt="Amazon logo" />
           </Link>
-          {/* delivery */}
+          {/* Delivery section */}
           <div className={classes.delivery}>
             <span>
-              {/* icon */}
+              {/* Icon for delivery */}
               <PlaceIcon />
             </span>
             <div>
@@ -34,15 +41,15 @@ function Header() {
           </div>
         </div>
         <div className={classes.search}>
-          {/* search */}
+          {/* Search bar section */}
           <select name="" id="">
             <option value="">All</option>
           </select>
           <input type="text" name="" id="" placeholder="search product" />
-          {/* icon */}
+          {/* Icon for search */}
           <SearchIcon />
         </div>
-        {/* right side link */}
+        {/* Right side navigation links */}
         <div className={classes.order_container}>
           <div>
             <Link
@@ -50,12 +57,12 @@ function Header() {
               className={classes.language}
             >
               <img src={flag} alt="Flag" />
-              <section name="" id="">
+              <select name="" id="">
                 <option value="">EN</option>
-              </section>
+              </select>
             </Link>
           </div>
-          {/* 3rd components */}
+          {/* Sign In link */}
           <Link
             to="https://www.amazon.com/gp/css/homepage.html?ref_=nav_youraccount_btn"
             className={classes.sign}
@@ -63,16 +70,16 @@ function Header() {
             <p>Sign In</p>
             <span>Account & Lists</span>
           </Link>
-          {/* orders */}
+          {/* Returns & Orders link */}
           <Link to="/Orders">
             <p>Returns</p>
             <span>& Orders</span>
           </Link>
-          {/* cart */}
+          {/* Shopping cart link */}
           <Link to="/Cart" className={classes.cart}>
-            {/* icon */}
+            {/* Icon for cart */}
             <AddShoppingCartIcon />
-            <span>{basket.length}</span>
+            <span>{totalItem}</span>
           </Link>
         </div>
       </section>
@@ -81,4 +88,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header; 

@@ -1,14 +1,16 @@
 
+// Import React and necessary hooks for context and state management
+import React, { createContext, useReducer } from "react";
 
-import React, {createContext, useReducer} from "react";
-// import { useReducer } from "react";
+// Create a Context object for managing global state
+export const DataContext = createContext();
 
-export const DataContext = createContext()
-
-export const DataProvider =({children,reducer,initialState}) =>{
-    return (
-        <DataContext.Provider value={useReducer(reducer,initialState)}>
-            {children}
-        </DataContext.Provider>
-    )
-}
+// Define the DataProvider component to provide state to its children
+export const DataProvider = ({ children, reducer, initialState }) => {
+  return (
+    <DataContext.Provider value={useReducer(reducer, initialState)}>
+      {/* Render children components and provide them access to the context */}
+      {children}
+    </DataContext.Provider>
+  );
+};
